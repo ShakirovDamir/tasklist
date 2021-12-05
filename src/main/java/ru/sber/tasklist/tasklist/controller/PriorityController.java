@@ -1,9 +1,7 @@
 package ru.sber.tasklist.tasklist.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.sber.tasklist.tasklist.entity.Priority;
 import ru.sber.tasklist.tasklist.repository.PriorityRepository;
 
@@ -21,5 +19,10 @@ public class PriorityController {
         List<Priority> list = priorityRepository.findAll();
         System.out.println("list =  " + list);
         return list;
+    }
+
+    @PostMapping("/add")
+    public Priority add(@RequestBody Priority priority){
+        return priorityRepository.save(priority);
     }
 }
